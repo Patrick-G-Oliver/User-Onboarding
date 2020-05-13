@@ -30,7 +30,7 @@ const Form = () => {
     const [errorState, setErrorState] = useState({
         name: "",
         email: "",
-        password: "Where's the password?",
+        password: "",
         terms: ""
     });
 
@@ -89,6 +89,9 @@ const Form = () => {
                         value={formState.name}
                         onChange={inputChange}
                     />
+                    {errorState.name.length > 0 ? (
+                        <p className="error">{errorState.name}</p>
+                    ) : null}
                 </label>
                 <label htmlFor="email">
                     Email 
@@ -112,6 +115,9 @@ const Form = () => {
                         value={formState.password}
                         onChange={inputChange}
                     />
+                    {errorState.password.length > 0 ? (
+                        <p className="error">{errorState.password}</p>
+                    ) : null}
                 </label>
                 <label htmlFor="terms">
                     <input  
