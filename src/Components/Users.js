@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 
+
+
 const Users = (props) => {
+
     return (
         <div>
-            
+            <h2>{props.user.name}</h2>
+            <p>{props.user.email}</p>
         </div>
     )
 }
-/* to display POST request data 
-<pre>{JSON.stringify(post, null, 2)}</pre>
-*/
+
 
 export default Users;
