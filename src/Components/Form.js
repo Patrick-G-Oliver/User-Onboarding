@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import * as yup from "yup";
 import axios from "axios";
 import { validate } from "json-schema";
+import { formatWithOptions } from "util";
 
 const formSchema = yup.object().shape({
     name: yup
@@ -20,7 +21,7 @@ const formSchema = yup.object().shape({
 });
 
 const Form = () => {
-    const [formState, setFormState] = useState({
+    const [userInput, setUserInput] = useState({
         name: "",
         email: "",
         password: "",
@@ -60,18 +61,18 @@ const Form = () => {
         let value = 
             e.target.type === "checkbox" ? e.target.checked : 
             e.target.value;
-        setFormState({ ...formState, [e.target.name]: value });
+        setUserInput({ ...userInput, [e.target.name]: value });
     }
 
     const clearUserForm = () => {
-        setFormState({ name: "", email: "", password: "", terms: false });
+        setUserInput({ name: "", email: "", password: "", terms: false });
     };
 
     const formSubmit = e => {
         e.preventDefault();
         console.log("form submission complete");
         axios
-            .post(' https://reqres.in/api/users', formState)
+            .post(' https://reqres.in/api/users', userInput)
             .then(response => console.log(response))
             .catch(err => console.log(err));
         clearUserForm();
@@ -86,7 +87,7 @@ const Form = () => {
                         type="text"
                         name="name"
                         id="name"
-                        value={formState.name}
+                        value={userInput.name}
                         onChange={inputChange}
                     />
                     {errorState.name.length > 0 ? (
@@ -99,7 +100,7 @@ const Form = () => {
                         type="email"
                         name="email"
                         id="email"
-                        value={formState.email}
+                        value={userInput.email}
                         onChange={inputChange}
                     /> 
                     {errorState.email.length > 0 ? (
@@ -112,7 +113,7 @@ const Form = () => {
                         type="password"
                         name="password"
                         id="password"
-                        value={formState.password}
+                        value={userInput.password}
                         onChange={inputChange}
                     />
                     {errorState.password.length > 0 ? (
@@ -124,7 +125,7 @@ const Form = () => {
                         type="checkbox"
                         name="terms"
                         id="terms"
-                        checked={formState.terms}
+                        checked={userInput.terms}
                         onChange={inputChange}
                     />
                     Terms of Service
