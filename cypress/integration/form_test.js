@@ -10,10 +10,17 @@ describe("Tests user inputs", () => {
     cy.visit("http://localhost:3000")
     })
 
-    it("Locates the name input", () => {
-        cy.get('#name') 
+    it("Locates / tests the name input", () => {
+        cy.get("#name") 
             .type("Ciomara Chavez de Oliver")
             .should("have.value", "Ciomara Chavez de Oliver")
-    }) 
+    })    
+
+    it("Locates / tests the email input", () => {
+        cy.get("#email")
+            .type("cioma@mail.com")
+            .should("have.value", "cioma@mail.com")
+    
+    });
 
 });
