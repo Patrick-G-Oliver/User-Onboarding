@@ -146,7 +146,7 @@ const Form = (props) => {
                         <p className="error">{errorState.terms}</p>
                     ) : null }
                 </label>
-                <button disabled={buttonDisabled}>Onboard thyself!</button>
+                <button disabled={buttonDisabled}>Submit</button>
             </form>
         </div>
     )
