@@ -1,24 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+import "./App.css";
+import Form from "./Components/Form.js";
+import Users from "./Components/Users";
 
 function App() {
+  // 1) set up state property called 'users' that is initialized 
+  // with an empty array 
+  const [users, setUsers] = useState([]);
+  // 2) Every time you make a POST request, and get that new user data back, update your users state with the new user added to the array
+  
+  console.log(users);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>User Onboarding</h1>
+      <Form users = {users} setUsers = {setUsers} />
+      {users.map( (user) => {
+         return  <Users key={user.id} user={user}/>
+      })}
     </div>
   );
 }
